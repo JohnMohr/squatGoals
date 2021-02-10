@@ -6,7 +6,7 @@ const WeekSchema = new Schema({
     name: String,
     squats: [ 
         {
-        type: Schema.Types.Objects,
+        type: Schema.Types.ObjectId,
         ref: 'Squat'
         }
     ]
