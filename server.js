@@ -30,7 +30,7 @@ app.get('/', (req, res) => {
     res.send("KOBE!")
 })
 
-//      SEED DATA:
+//  ROUTING SEED DATA:
 //     Kokori Tree
 const seedSquats = [
     {
@@ -89,49 +89,78 @@ app.get('/seedworkouts', (req,res) => {
           {
             name: 'week 1',
             squats: [
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id
             ]
 
           },
           {
             name: 'week 2',
             squats: [
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id
             ]
 
           },
           {
             name: 'week 3',
             squats: [
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id
             ]
 
           },
           {
             name: 'week 4',
             squats: [
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id,
-                result[Math.floor(math.random() = res.length)]._id
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id,
+                result[Math.floor(math.random() * result.length)]._id
             ]
 
           },
 
-         
-
         ])
+            .then(fullRES => {
+                res.json(fullRes)
+            })
+            .catch(err => {
+                res.json(err)
+            })
+    })
+    .catch(err => {
+        res.send(err)
     })
 })
+
+//      VIEW DATA
+//  
+app.get('/api/squats', (req,res) => {
+    db.Squat.find({})
+    .then(dbSquats => {
+        res.json(dbSquats);
+    })
+})
+
+app.get('/api/weeks', (req,res) => {
+    db.Week.find({})
+    .then(dbWeeks => {
+        res.json(dbWeeks);
+    })
+    .catch(err => {
+        console.log(err);
+        res.send(err);
+    })
+})
+
+
 //      LISTENER
 // Navi: "Hey! Listen!"
 app.listen(PORT, function() {
